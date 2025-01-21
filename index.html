@@ -40,7 +40,7 @@ AFRAME.registerComponent('movement-controls', {
   },
   onAxisMove: function (evt) {
     const axis = evt.detail.axis;
-    const speed = 0.1; // Скорость передвижения
+    const speed = 5; // Скорость передвижения
     const position = this.el.object3D.position;
 
     // Обновление позиции камеры на основе ввода с левого стика
