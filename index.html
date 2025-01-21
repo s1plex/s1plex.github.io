@@ -35,19 +35,19 @@
     <script>
 
 AFRAME.registerComponent('movement-controls', {
-    init: function () {
-      this.el.addEventListener('thumbstickmoved', this.onThumbstickMoved.bind(this));
-    },
-    onThumbstickMoved: function (evt) {
-      const direction = evt.detail.axis;
-      const speed = 10; // Скорость передвижения
-      const position = this.el.object3D.position;
+  init: function () {
+    this.el.addEventListener('axismove', this.onAxisMove.bind(this));
+  },
+  onAxisMove: function (evt) {
+    const axis = evt.detail.axis;
+    const speed = 0.1; // Скорость передвижения
+    const position = this.el.object3D.position;
 
-      // Обновление позиции камеры на основе ввода с левого стика
-      position.x += direction[0] * speed;
-      position.z += direction[1] * speed;
-    }
-  });
+    // Обновление позиции камеры на основе ввода с левого стика
+    position.x += axis[0] * speed;
+    position.z += axis[1] * speed;
+  }
+});
 
 
     const interactableObjects = document.querySelectorAll('#element');
