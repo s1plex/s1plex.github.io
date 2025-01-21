@@ -11,18 +11,14 @@
 </head>
 <body>
     <a-scene id="scene">
-<!--             <a-entity camera look-controls position="0 1.6 0">
+ <a-entity camera look-controls position="0 1.6 0">
                 <a-entity laser-controls="hand: left"></a-entity>
-                <a-entity laser-controls="hand: right"></a-entity> -->
+                <a-entity laser-controls="hand: right"></a-entity>
                 <a-cursor> </a-cursor>
            </a-entity>
 
 
-        <a-entity id="player" 
-          position="0 1.6 0" 
-          camera 
-          wasd-controls 
-          thumbstick-controls="hand: left; movementSpeed: 0.1"></a-entity>
+
 
         <a-sky id="sky" color="gray"></a-sky>
         
@@ -39,25 +35,7 @@
     </a-scene>
 
     <script>
-  AFRAME.registerComponent('stick-movement', {
-    init: function () {
-      this.el.addEventListener('axismove', (event) => {
-        const [x, y] = event.detail.axis; // x и y - значения стика
-        const position = this.el.object3D.position;
-
-        // Движение вперед/назад и влево/вправо
-        position.x += x * 0.1;
-        position.z += y * 0.1;
-      });
-    }
-  });
-
-  // Применяем компонент к камере
-  document.querySelector('#player').setAttribute('stick-movement', '');
-
-
-
-        
+     
 AFRAME.registerComponent('movement-controls', {
   init: function () {
     this.el.addEventListener('axismove', this.onAxisMove.bind(this));
