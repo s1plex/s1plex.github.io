@@ -4,21 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
+    <script src="https://aframe.io/releases/1.6.0/aframe.min.js"></script>
     <script src="https://unpkg.com/aframe-event-set-component@3.0.3/dist/aframe-event-set-component.min.js"></script>
-    <script src="https://cdn.rawgit.com/PicoVR/aframe-pico-component/master/dist/pico.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/n5ro/aframe-extras@6.1.3/dist/aframe-extras.min.js"></script>
     
 </head>
 <body>
     <a-scene id="scene">
-            <a-entity camera look-controls position="0 1.6 0">
-               <a-entity pico-controller="hand: left" position="-0.5 0 0"></a-entity>
-               <a-entity pico-controller="hand: right" position="0.5 0 0"></a-entity>
+<!--             <a-entity camera look-controls position="0 1.6 0">
+                <a-entity laser-controls="hand: left"></a-entity>
+                <a-entity laser-controls="hand: right"></a-entity> -->
                 <a-cursor> </a-cursor>
            </a-entity>
 
-        <a-sky id="sky" color="gray"></a-sky>
 
+        <a-entity id="player" 
+          position="0 1.6 0" 
+          camera 
+          wasd-controls 
+          thumbstick-controls="hand: left; movementSpeed: 0.1"></a-entity>
+
+        <a-sky id="sky" color="gray"></a-sky>
+        
         <a-plane rotation="-90 0 0" width="30" height="30"></a-plane>
     
     
@@ -32,7 +39,25 @@
     </a-scene>
 
     <script>
+  AFRAME.registerComponent('stick-movement', {
+    init: function () {
+      this.el.addEventListener('axismove', (event) => {
+        const [x, y] = event.detail.axis; // x и y - значения стика
+        const position = this.el.object3D.position;
 
+        // Движение вперед/назад и влево/вправо
+        position.x += x * 0.1;
+        position.z += y * 0.1;
+      });
+    }
+  });
+
+  // Применяем компонент к камере
+  document.querySelector('#player').setAttribute('stick-movement', '');
+
+
+
+        
 AFRAME.registerComponent('movement-controls', {
   init: function () {
     this.el.addEventListener('axismove', this.onAxisMove.bind(this));
