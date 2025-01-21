@@ -11,9 +11,11 @@
 </head>
 <body>
     <a-scene id="scene">
-        <a-camera>
-          <a-cursor></a-cursor>
-        </a-camera>
+            <a-entity camera look-controls position="0 1.6 0">
+               <a-entity pico-controller="hand: left" position="-0.5 0 0"></a-entity>
+               <a-entity pico-controller="hand: right" position="0.5 0 0"></a-entity>
+                <a-cursor> </a-cursor>
+           </a-entity>
 
         <a-sky id="sky" color="gray"></a-sky>
 
@@ -27,12 +29,6 @@
         <a-text value="Score: 0" position="-1.5 2.5 -5" color="black" id="score"></a-text>
     
         <a-text id="timer" value="Time: 60" position="1.5 2.5 -5" color="black"></a-text>
-    
-
-<a-entity camera look-controls position="0 1.6 0">
-               <a-entity pico-controller="hand: left" position="-0.5 0 0"></a-entity>
-               <a-entity pico-controller="hand: right" position="0.5 0 0"></a-entity>
-           </a-entity>
     </a-scene>
 
     <script>
