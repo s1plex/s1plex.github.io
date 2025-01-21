@@ -35,21 +35,6 @@
     </a-scene>
 
     <script>
-     
-AFRAME.registerComponent('movement-controls', {
-  init: function () {
-    this.el.addEventListener('axismove', this.onAxisMove.bind(this));
-  },
-  onAxisMove: function (evt) {
-    const axis = evt.detail.axis;
-    const speed = 5; // Скорость передвижения
-    const position = this.el.object3D.position;
-
-    // Обновление позиции камеры на основе ввода с левого стика
-    position.x += axis[0] * speed;
-    position.z += axis[1] * speed;
-  }
-});
 
 
     const interactableObjects = document.querySelectorAll('#element');
